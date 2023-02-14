@@ -35,9 +35,3 @@ export function Group() {
 //         this.el = group
 //     }
 // }
-
-// 2. class Component
-// 클래스 문법을 사용해 React 요소를 여러 번 생성할 수 있는 컴포넌트 설계
-// class {
-
-// }

@@ -29,8 +29,11 @@ class Logo extends React.Component {
   render() {
     console.log(this.props);
 
+    // 구조 분해 할당
+    const { path, label } = this.props;
+
     // React 엘리먼트 반환
-    return <img src="/assets/react-logo.svg" alt="React" />;
+    return <img src={path} alt={label} />;
   }
 }
 
@@ -42,9 +45,16 @@ reactDomRoot.render(
   <React.Fragment>
     <Logo path="/assets/react-logo.svg" label="React" />
     <Group />
+    <Logo
+      path="https://upload.vectorlogo.zone/logos/nextjs/images/60eff509-53dd-4280-92e7-7318fa02e934.svg"
+      label="Next.js"
+      unknown="아무 것도 몰라요~"
+    />
     <Group lang="ru" content="Далеко-далеко за словесными горами." />
   </React.Fragment>
 );
+
+//*-----------------------------------------------------------------------
 
 // reactDomRoot.render([
 //?   with JSX

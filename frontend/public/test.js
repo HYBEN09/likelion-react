@@ -6,11 +6,19 @@
 /* 함수 컴포넌트 ------------------------------------------------------------------ */
 
 function AppLogo(props) {
+  let imageSource = "/assets/logo/";
+  imageSource += props.outline ? "outline" : "fill";
+  imageSource += props.color === "white" ? "-white" : "-red";
+
+  let ext = "svg";
+
+  return <img src={`${imageSource}.${ext}`} alt="Netflix" />;
+}
+
+function AppHomeLink() {
   return (
     <h1>
-      <a href="https://netflix.com/">
-        <img src="" alt="" /> 넷플릭스
-      </a>
+      <a href="https://netflix.com/"></a>
     </h1>
   );
 }
@@ -42,14 +50,51 @@ function AppNav() {
   );
 }
 
-function AppHeader() {
-  return (
-    <header>
-      <AppLogo />
-      <AppSearch />
-      <AppNav />
-    </header>
-  );
+class AppHeader extends React.Component {
+  state = {
+    outline: false,
+    color: "red",
+  };
+
+  render() {
+    const { logoType } = this.props;
+
+    return (
+      <header>
+        <AppLogo
+          outline={logoType.shape.includes("outline") ? true : false}
+          color={logoType.color}
+        />
+        <div role="group">
+          <button
+            type="button"
+            onClick={() => {
+              this.setState({
+                outline: !this.state.outline,
+              });
+            }}
+          >
+            change logo type is outline
+          </button>
+
+          <button
+            type="button"
+            onClick={() => {
+              console.log("clicked button 2");
+            }}
+          >
+            change logo type is fill
+          </button>
+        </div>
+
+        {/* <AppLogo outline /> */}
+        {/* <AppLogo color="white" /> */}
+        {/* <AppLogo color="white" outline /> */}
+        <AppSearch />
+        <AppNav />
+      </header>
+    );
+  }
 }
 
 function AppMain() {
@@ -73,10 +118,6 @@ function AppFooter() {
 }
 
 /* 클래스 컴포넌트 ----------------------------------------------------------------- */
-// - 2018년까지는....
-// - 클래스 컴포넌트는 상태를 가질 수 있다.
-// - 함수 컴포넌트는 상태를 가질 수 없다.
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -86,18 +127,17 @@ class App extends React.Component {
     // 상태 업데이트 → 다시 렌더링!!!
     // 선언형 프로그래밍
     this.state = {
-      headline: "",
-      description: "",
-      subjects: [],
+      logoType: {
+        shape: "outline",
+        color: "red",
+      },
     };
   }
 
   render() {
-    // const {  } = this.props;
-
     return (
       <div className="app">
-        <AppHeader />
+        <AppHeader logoType={this.state.logoType} />
         <AppMain />
         <AppFooter />
       </div>
