@@ -14,15 +14,27 @@
 // 1. functional Component
 // 함수 문법을 사용해 React 요소를 여러 번 생성할 수 있는 컴포넌트 설계
 export function Group() {
-  return React.createElement(
-    'div', 
-    { role: 'group', lang: 'en' },
-    [
-      'Group Element',
-      'Sectioning content',
-    ]
-  );
+  return React.createElement("div", { role: "group", lang: "en" }, [
+    "Group Element",
+    "Sectioning content",
+  ]);
 }
+
+//* 생성자 함수
+// function Group(){
+//     const group = document.createElement("div")
+//     group.setAttribute("role", "group")
+//     this.el = group
+// }
+
+//* class 생성자 함수
+// class Group1{
+//     constructor(){
+//         const group = document.createElement("div")
+//         group.setAttribute("role", "group")
+//         this.el = group
+//     }
+// }
 
 // 2. class Component
 // 클래스 문법을 사용해 React 요소를 여러 번 생성할 수 있는 컴포넌트 설계
