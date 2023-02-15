@@ -19,9 +19,9 @@ var App = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, App);
     _this = _super.call(this, props);
     _this.state = {
-      headline: "React Application"
+      headline: "React Application",
+      isDisabled: false
     };
-    // this가 undefined로 출력되는 문제 해결
     _this.handleChangeHeadline = _this.handleChangeHeadline.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -29,17 +29,22 @@ var App = /*#__PURE__*/function (_React$Component) {
     key: "handleChangeHeadline",
     value: function handleChangeHeadline() {
       this.setState({
-        headline: "New HeadLine💥"
+        headline: "New HeadLine💥",
+        isDisabled: true
       });
     }
   }, {
     key: "render",
     value: function render() {
+      var _this$state = this.state,
+        headline = _this$state.headline,
+        isDisabled = _this$state.isDisabled;
       return /*#__PURE__*/React.createElement("div", {
         "data-component": "App"
-      }, /*#__PURE__*/React.createElement("h1", null, this.state.headline), /*#__PURE__*/React.createElement("button", {
+      }, /*#__PURE__*/React.createElement("h1", null, headline), /*#__PURE__*/React.createElement("button", {
         type: "button",
-        onClick: this.handleChangeHeadline
+        onClick: this.handleChangeHeadline,
+        disabled: isDisabled
       }, "\uD5E4\uB4DC\uB77C\uC778 \uBCC0\uACBD"));
     }
   }]);

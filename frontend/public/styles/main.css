@@ -1,2 +1,9 @@
-@import './_base.css';
-@import './_layout.css';
+@import "./_base.css";
+@import "./_layout.css";
+
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}

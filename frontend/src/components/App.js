@@ -3,22 +3,30 @@ class App extends React.Component {
     super(props);
     this.state = {
       headline: "React Application",
+      isDisabled: false,
     };
-    // this가 undefined로 출력되는 문제 해결
+
     this.handleChangeHeadline = this.handleChangeHeadline.bind(this);
   }
 
   handleChangeHeadline() {
     this.setState({
       headline: "New HeadLine💥",
+      isDisabled: true,
     });
   }
 
   render() {
+    const { headline, isDisabled } = this.state;
+
     return (
       <div data-component="App">
-        <h1>{this.state.headline}</h1>
-        <button type="button" onClick={this.handleChangeHeadline}>
+        <h1>{headline}</h1>
+        <button
+          type="button"
+          onClick={this.handleChangeHeadline}
+          disabled={isDisabled}
+        >
           헤드라인 변경
         </button>
       </div>
