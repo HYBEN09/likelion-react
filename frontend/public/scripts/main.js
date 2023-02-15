@@ -1,3 +1,7 @@
 import App from "./components/App.js";
-var reactDomRoot = ReactDOM.createRoot(document.getElementById("root"));
-reactDomRoot.render( /*#__PURE__*/React.createElement(React.StrictMode, null, /*#__PURE__*/React.createElement(App, null)));
+var _React = React,
+  StrictMode = _React.StrictMode;
+var _ReactDOM = ReactDOM,
+  createRoot = _ReactDOM.createRoot;
+var reactDomRoot = createRoot(document.getElementById("root"));
+reactDomRoot.render( /*#__PURE__*/React.createElement(StrictMode, null, /*#__PURE__*/React.createElement(App, null)));
