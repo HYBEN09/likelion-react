@@ -10,6 +10,7 @@
     "**/CVS": true,
     "**/.DS_Store": true,
     "**/Thumbs.db": true,
+    // nodemodule을 감춰둠
     "**/node_modules": true,
     "**/*.js.map": {
       "when": "$(basename)"
@@ -58,7 +59,14 @@
   "html.validate.scripts": true,
   "html.validate.styles": true,
 
-  "colorize.languages": ["typescript", "typescriptreact", "javascript", "javascriptreact", "css", "scss"],
+  "colorize.languages": [
+    "typescript",
+    "typescriptreact",
+    "javascript",
+    "javascriptreact",
+    "css",
+    "scss"
+  ],
   "css.completion.completePropertyWithSemicolon": true,
   "css.lint.unknownAtRules": "ignore",
   "css.validate": true,

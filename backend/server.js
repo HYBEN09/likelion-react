@@ -1,25 +1,25 @@
-import liveServer from 'live-server';
-import { resolve } from 'node:path';
-import { argv } from 'node:process';
-import parseArgv from './parseArgv.js';
+import liveServer from "live-server";
+import { resolve } from "node:path";
+import { argv } from "node:process";
+import parseArgv from "./parseArgv.js";
 
 /* directories -------------------------------------------------------------- */
 
-const frontendDir = resolve('frontend');
+const frontendDir = resolve("frontend");
 
 const DIR = {
-  public: resolve(frontendDir, 'public'),
-  src: resolve(frontendDir, 'src'),
+  public: resolve(frontendDir, "public"),
+  src: resolve(frontendDir, "src"),
 };
 
 /* parameters --------------------------------------------------------------- */
 
 let params = {
-  host: 'localhost',
+  host: "localhost",
   port: 3000,
   root: DIR.public,
-  file: 'index.html',
-  mount: [['/scripts', DIR.src]],
+  file: "index.html",
+  // mount: [['/scripts', DIR.src]],
   open: false,
   wait: 200,
 };
