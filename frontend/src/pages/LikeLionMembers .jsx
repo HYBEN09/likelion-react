@@ -1,6 +1,6 @@
 import { likeLionMembers } from "../data/likeLionMembers.js";
 
-class Home extends React.Component {
+class LikeLionMembers extends React.Component {
   state = {
     members: likeLionMembers,
   };
@@ -81,4 +81,4 @@ function LabButton(props) {
   );
 }
 
-export default Home;
+export default LikeLionMembers;
