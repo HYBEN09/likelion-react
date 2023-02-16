@@ -1,6 +1,6 @@
-import Browse from "./pages/Browse.js";
+import Browse from "./pages/Browse.jsx";
 import Home from "./pages/Home.js";
-import Login from "./pages/Login.js";
+import Login from "./pages/Login.jsx";
 import { likeLionMembers } from "./data/likeLionMembers.js";
 
 class App extends React.Component {
