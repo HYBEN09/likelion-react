@@ -21,31 +21,26 @@ class Home extends React.Component {
   render() {
     const { products } = this.state;
 
-    console.log(products[0]);
-    console.log(products[1]);
+    // console.log(products[0]);
+    // console.log(products[1]);
 
     return (
       <React.Fragment>
         <h2>리스트 렌더링</h2>
         <ul>
-          <li>
-            <figure data-id={products[0].id}>
-              <img src={products[0].image} height={100} alt="" />
-              <figcaption>
-                <span>{products[0].name}</span>
-                <span>{products[0].price}</span>
-              </figcaption>
-            </figure>
-          </li>
-          <li>
-            <figure data-id={products[1].id}>
-              <img src={products[1].image} height={100} alt />
-              <figcaption>
-                <span>{products[1].name}</span>
-                <span>{products[1].price}</span>
-              </figcaption>
-            </figure>
-          </li>
+          {products.map((product) => {
+            return (
+              <li key={product.id}>
+                <figure data-id={product.id}>
+                  <img src={product.image} height={100} alt="" />
+                  <figcaption style={{ display: "flex", gap: 12 }}>
+                    <span>{product.name}</span>
+                    <span>{product.price}</span>
+                  </figcaption>
+                </figure>
+              </li>
+            );
+          })}
         </ul>
       </React.Fragment>
     );

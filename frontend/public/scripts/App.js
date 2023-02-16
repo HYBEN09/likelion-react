@@ -36,31 +36,33 @@ var App = /*#__PURE__*/function (_React$Component) {
     _defineProperty(_assertThisInitialized(_this), "originalHeadline", _this.state.headline);
     _defineProperty(_assertThisInitialized(_this), "willUpdateHeadline", "NEW HEADLINE! 😃");
     _defineProperty(_assertThisInitialized(_this), "handleChangeHeadline", function () {
-      // const { hasError: error } = this.state;
+      var error = _this.state.hasError;
 
-      // 1. 문
+      //* 1. 문
       // if (error === null || error === undefined) {
-      //   console.log('현재 앱에는 오류(error)가 발생하지 않았습니다.');
+      //   console.log("현재 앱에는 오류(error)가 발생하지 않았습니다.");
       // }
 
-      // 2. 터너리
-      // (error === null || error === undefined) ?
-      //   console.log('현재 앱에는 오류(error)가 발생하지 않았습니다.') :
-      //   null;
+      //* 2. 터너리
+      // error === null || error === undefined
+      //   ? console.log("현재 앱에는 오류(error)가 발생하지 않았습니다.")
+      //   : null;
 
-      // 3. null 병합 연산자
-      // error ?? console.log('현재 앱에는 오류(error)가 발생하지 않았습니다.');
+      //* 3. null 병합 연산자
+      // error ?? console.log("현재 앱에는 오류(error)가 발생하지 않았습니다.");
 
-      // 옵셔널 체이닝을 사용해 조건 처리해봅니다.
-      // error && typeof error.log === 'function' && error.log();
+      //* 옵셔널 체이닝을 사용해 조건 처리해봅니다.
+      // error && typeof error.log === "function" && error.log();
 
       // let error = {
       //   log() {
-      //     console.log('this is logger')
-      //   }
-      // }
+      //     console.log("this is logger");
+      //   },
+      // };
 
       // error.log?.();
+
+      //*-----------------------------------------------------------------------------
 
       // 조건 처리
       // 문을 사용할 것인가?
@@ -104,6 +106,7 @@ var App = /*#__PURE__*/function (_React$Component) {
           role: "alert"
         }, " ", hasError.message);
       }
+      return /*#__PURE__*/React.createElement(Home, null);
       return /*#__PURE__*/React.createElement("div", {
         className: "App"
       }, /*#__PURE__*/React.createElement("h1", null, headline), /*#__PURE__*/React.createElement("button", {
