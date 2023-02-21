@@ -16,7 +16,7 @@ abbr[title] {
   cursor: help;
 }
 
-/*브라우저 창에서 command + shift + p -> rendering -> Emulate css media type -> print */
+/* 브라우저 창에서 command + shift + p -> rendering -> Emulate css media type -> print */
 @media print {
   abbr[title]::after {
     content: "(" attr(title) ")";

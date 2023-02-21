@@ -1,10 +1,11 @@
-import Counter from "../components/Counter";
+import Counter from "../components/Counter.function";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Counter count={5} />
+      <Counter count={10} />
+      <Counter step={2} />
     </div>
   );
 }
