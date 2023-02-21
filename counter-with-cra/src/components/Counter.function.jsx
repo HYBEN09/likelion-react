@@ -1,16 +1,18 @@
 import { useState } from "react";
 
-function Counter(props) {
-  const [count, setCount] = useState(props.count);
+function Counter({ min = 1, count: initialCount = 1, max = 10, step = 1 }) {
+  let [count, setCount] = useState(initialCount);
+  const handleIncrement = () => setCount(count + step);
+  const handleDecrement = () => setCount(count - step);
 
-  const handleIncrement = () => {
-    console.log("+");
-    setCount(count + props.step);
-  };
-  const handleDecrement = () => {
-    console.log("-");
-    setCount(count - props.step);
-  };
+  // const handleIncrement = () => {
+  //   console.log("+");
+  //   setCount(count + props.step);
+  // };
+  // const handleDecrement = () => {
+  //   console.log("-");
+  //   setCount(count - props.step);
+  // };
 
   return (
     <div className="Counter">
@@ -26,11 +28,11 @@ function Counter(props) {
 }
 
 // static
-Counter.defaultProps = {
-  count: 1,
-  min: 1,
-  max: 10,
-  step: 1,
-};
+// Counter.defaultProps = {
+//   count: 1,
+//   min: 1,
+//   max: 10,
+//   step: 1,
+// };
 
 export default Counter;
