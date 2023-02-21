@@ -1,4 +1,5 @@
 import { useState } from "react";
+import styles from "./Counter.module.css";
 
 function Counter({ min = 1, count: initialCount = 1, max = 10, step = 1 }) {
   let [count, setCount] = useState(initialCount);
@@ -15,7 +16,7 @@ function Counter({ min = 1, count: initialCount = 1, max = 10, step = 1 }) {
   // };
 
   return (
-    <div className="Counter">
+    <div className={styles.container}>
       <button type="button" onClick={handleIncrement}>
         +
       </button>
