@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import styles from "./App.module.css";
 import {
   CounterFunction,
   CounterClass,
@@ -27,17 +27,18 @@ function renderComponents(isVisible) {
   }
 }
 
-// 함수 컴포넌트
+//* 함수 컴포넌트
 // React v16.8 (2019)
 // - 상태 관리 React.useState
 // - 사이드 이펙트 관리 React.useEffect
+
 function App() {
   // component state = { isLoading, error, data }
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
   const [data, setData] = React.useState("");
 
-  // 사이드 이펙트 처리 훅
+  //* 사이드 이펙트 처리 훅 ----------------------------------------------
   React.useEffect(() => {
     // console.log('componentDidMount');
 
@@ -68,9 +69,7 @@ function App() {
     console.log("componentDidUpdate");
   });
 
-  // -----------------------------------------------------
-
-  // React 상태 관리 훅(Hook)
+  //* React 상태 관리 훅(Hook) -------------------------------------
   // 상태 변수(state variable)
   const [isVisibleComponents, updateIsVisibleComponents] =
     React.useState(false);
@@ -82,8 +81,8 @@ function App() {
 
   // class's render method
   return (
-    <div className="App">
-      <ReactLogo title="리엑트 로고" />
+    <div className={styles.container}>
+      <ReactLogo className={styles.logo} title="리액트 로고" />
       <button type="button" onClick={handleToggleVisible}>
         {isVisibleComponents.toString()}
       </button>
