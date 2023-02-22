@@ -1,19 +1,21 @@
 import React from "react";
+import styles from "./LifeCycle.module.css";
 import { ReactComponent as Spinner } from "../../assets/spinner.svg";
 
 const API_ENDPOINT = "https://randomuser.me/api/?results=5";
 
 class LifeCycle extends React.Component {
+  /* 클래스 필드 ------------------------------------------------------------------- */
+
+  // this.clearId
+  clearId = -1;
+
   /* render 단계 ---------------------------------------------------------------- */
 
   state = {
-    // 로딩 중인가요? (데이터 패치 요청????)
     isLoading: false,
-    // 통신 결과가 도착했나요? (데이터???)
-    data: [], // null
-    // 오류는 어떤 정보(상태 코드, 메시지)를 가지고 있나요?
+    data: [],
     error: null,
-    // 혹시 오류가 발생했나요?
     hasError: false,
   };
 
@@ -35,7 +37,7 @@ class LifeCycle extends React.Component {
     }
 
     return (
-      <>
+      <div className={styles.container}>
         <button
           type="button"
           onClick={() => this.fetchRandomPeople(API_ENDPOINT)}
@@ -46,20 +48,15 @@ class LifeCycle extends React.Component {
         {/* <ul>
           <li></li>
         </ul> */}
-      </>
+      </div>
     );
   }
 
-  /* commit 단계 ---------------------------------------------------------------- */
+  /* 
+  commit 단계 ---------------------------------------------------------------- */
 
-  // React + Firebase 클라우드 Backend (Serverless) : AWS
-  // - 인증(회원가입, 로그인, SNS 로그인)
-  // - 파이어스토어 (데이터베이스: JSON 데이터 구조)
-  // - 스토리지 (이미지, 에셋 업로드 → URL)
-  // - 호스팅 (서비스, FTP → 무료 웹 호스팅)
-
+  // Random User API 서버에 요청
   async fetchRandomPeople(endpoint) {
-    // Random User API 서버에 요청
     try {
       const response = await fetch(endpoint);
       const data = await response.json();
@@ -67,7 +64,6 @@ class LifeCycle extends React.Component {
         data: data.results,
       });
     } catch (error) {
-      console.log(error);
       this.setState({
         error: {
           message: error.message,
@@ -78,8 +74,8 @@ class LifeCycle extends React.Component {
       this.setState({ isLoading: false });
     }
   }
-  //* DOM에 마운트 된 이후 시점에 호출
-  // 이벤트 구독
+
+  // 이벤트 구독(subscription)
   componentDidMount() {
     // 3번째 사이드 이펙트
     // 이벤트 구독/취소
@@ -87,7 +83,7 @@ class LifeCycle extends React.Component {
     //    접속 중인 친구의 온라인 상태 여부 감지하는 이벤트 함수 연결 해제(취소)
 
     // 타이머(특정 주기마다 확인하는 이벤트 함수 시뮬레이션)
-    setInterval(() => {
+    this.clearId = setInterval(() => {
       console.log("친구야 접속 중이니?");
     }, 1500);
 
@@ -119,15 +115,16 @@ class LifeCycle extends React.Component {
     }
   }
 
-  //* 컴포넌트 업데이트 이후 시점에 호출
   componentDidUpdate() {
     console.log("우리 컴포넌트가 변경되었어요~");
   }
 
-  //*  컴포넌트 제거 예정 시점에 호출
-  //구독중인 이벤트 취소 (unsubscription)
+  // 구독 중인 이벤트 취소(unsubscription)
   componentWillUnmount() {
     console.log("컴포넌트 언마운트 전에 실행됩니다.");
+
+    clearInterval(this.clearId);
+    console.log("구독 중인 친구 접속 감지 이벤트를 해제했습니다.");
   }
 }
 
