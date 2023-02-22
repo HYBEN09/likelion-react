@@ -5,9 +5,10 @@ import {
   CounterClass,
   Button,
   LifeCycle,
+  API_ENDPOINT,
 } from "../components";
 
-import { API_ENDPOINT } from "../components/LifeCycle/LifeCycle";
+import { ReactComponent as ReactLogo } from "assets/logo.svg";
 
 function renderComponents(isVisible) {
   if (isVisible) {
@@ -31,11 +32,6 @@ function renderComponents(isVisible) {
 // - 상태 관리 React.useState
 // - 사이드 이펙트 관리 React.useEffect
 function App() {
-  // 관심사의 분리
-  // 앱의 로딩 상태
-  // 로딩 이후, 데이터 관리
-  // 로딩 이후, 통신 실패 → 오류 처리
-
   // component state = { isLoading, error, data }
   const [isLoading, setIsLoading] = React.useState(true);
   const [error, setError] = React.useState(null);
@@ -43,8 +39,26 @@ function App() {
 
   // 사이드 이펙트 처리 훅
   React.useEffect(() => {
-    console.log("componentDidMount");
-    // console.log('componentDidUpdate');
+    // console.log('componentDidMount');
+
+    // fetch data
+    // async function???????
+    // 이펙트 함수 안에서 비동기 함수를 작성하는 건 가능하다
+    async function fetchData() {
+      // const data = await (await fetch(API_ENDPOINT)).json();
+
+      try {
+        const response = await fetch(API_ENDPOINT);
+        const data = await response.json();
+        setData(data.results);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setIsLoading(false);
+      }
+    }
+
+    fetchData();
   }, []);
 
   React.useEffect(() => {
@@ -66,8 +80,10 @@ function App() {
     updateIsVisibleComponents(!isVisibleComponents);
   };
 
+  // class's render method
   return (
     <div className="App">
+      <ReactLogo title="리엑트 로고" />
       <button type="button" onClick={handleToggleVisible}>
         {isVisibleComponents.toString()}
       </button>
