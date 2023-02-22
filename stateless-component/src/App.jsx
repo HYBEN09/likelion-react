@@ -1,34 +1,22 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import classes from "./App.module.css";
+import { Button } from "./components";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const handleClick = (e) => {
+    console.log(e.target);
+  };
 
   return (
     <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <h2 className={classes.headline}>Button 컴포넌트(stateless)</h2>
+      <div role="group" className={classes.buttonGroup}>
+        <Button onClick={handleClick}>회원가입</Button>
+        <Button mode="secondary" onClick={handleClick}>
+          로그인
+        </Button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
