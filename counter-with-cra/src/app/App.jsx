@@ -1,4 +1,4 @@
-import React from "react";
+import { useState } from "react";
 import "./App.css";
 import {
   CounterFunction,
@@ -26,10 +26,17 @@ function renderComponents(isVisible) {
 
 function App() {
   // 상태 변수(state variable)
-  const [isVisibleComponents] = React.useState(false);
+  const [isVisibleComponents, updateIsVisibleComponents] = useState(false);
+
+  const handleToggleVisible = () => {
+    updateIsVisibleComponents(!isVisibleComponents);
+  };
 
   return (
     <div className="App">
+      <button type="button" onClick={handleToggleVisible}>
+        {isVisibleComponents.toString()}
+      </button>
       <h2>라이프 사이클</h2>
       <LifeCycle />
       {renderComponents(isVisibleComponents)}

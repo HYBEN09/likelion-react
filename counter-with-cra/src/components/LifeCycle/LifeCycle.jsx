@@ -78,8 +78,19 @@ class LifeCycle extends React.Component {
       this.setState({ isLoading: false });
     }
   }
-
+  //* DOM에 마운트 된 이후 시점에 호출
+  // 이벤트 구독
   componentDidMount() {
+    // 3번째 사이드 이펙트
+    // 이벤트 구독/취소
+    // 예) 접속 중인 친구의 온라인 상태 여부 감지하는 이벤트 함수 연결(구독)
+    //    접속 중인 친구의 온라인 상태 여부 감지하는 이벤트 함수 연결 해제(취소)
+
+    // 타이머(특정 주기마다 확인하는 이벤트 함수 시뮬레이션)
+    setInterval(() => {
+      console.log("친구야 접속 중이니?");
+    }, 1500);
+
     // this.fetchRandomPeople(API_ENDPOINT);
 
     const lifecycleElement = document.querySelector(".LifeCycle");
@@ -108,8 +119,15 @@ class LifeCycle extends React.Component {
     }
   }
 
+  //* 컴포넌트 업데이트 이후 시점에 호출
   componentDidUpdate() {
     console.log("우리 컴포넌트가 변경되었어요~");
+  }
+
+  //*  컴포넌트 제거 예정 시점에 호출
+  //구독중인 이벤트 취소 (unsubscription)
+  componentWillUnmount() {
+    console.log("컴포넌트 언마운트 전에 실행됩니다.");
   }
 }
 
