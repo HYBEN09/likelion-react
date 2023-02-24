@@ -1,8 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useLayoutEffect } from 'react';
 
 export function EventSubUnsub() {
+  useLayoutEffect(() => {
+    console.log('UseLayoutEffect');
+  }, []);
+
   useEffect(() => {
-    console.log('타이머 구독 연결 ');
+    console.log('useEffect');
     setInterval(() => {
       console.count('count');
     }, 3000);

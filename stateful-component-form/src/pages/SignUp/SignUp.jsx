@@ -1,7 +1,10 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef /* useState */ } from 'react';
 import { BaseLayout, FormInput, Button } from '@/components';
 import classes from './SignUp.module.scss';
-import { EventSubUnsub } from '@/demo/EventSubUnsub';
+// import { EventSubUnsub } from '@/demo/EventSubUnsub';
+import { validator } from '@/utils';
+
+console.log(validator.isId('ab35', { min: 3, max: 11 }));
 
 const initialFormState = {
   name: '',
@@ -16,7 +19,8 @@ const initialFormState = {
 // re-rendering (immutation) vs. re-rendering ❌ (mutation)
 
 export default function SignUp() {
-  const [message, setMessage] = useState('before update');
+  // const [isVisible, setIsVisible] = useState(true);
+  // const [message, setMessage] = useState('before update');
 
   const formStateRef = useRef(initialFormState);
 
@@ -41,7 +45,10 @@ export default function SignUp() {
 
   return (
     <BaseLayout className={classes.SignUp}>
-      <EventSubUnsub />
+      {/* {isVisible && <EventSubUnsub />}
+      <button type="button" onClick={() => setIsVisible(!isVisible)}>
+        {isVisible ? 'unmount' : 'mount'}
+      </button>
       <p>{message}</p>
       <button
         type="button"
@@ -52,7 +59,7 @@ export default function SignUp() {
         }
       >
         update
-      </button>
+      </button> */}
       <h2>회원가입 페이지</h2>
       <form
         className={classes.form}
