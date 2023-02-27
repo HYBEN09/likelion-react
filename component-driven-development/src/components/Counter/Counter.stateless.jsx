@@ -1,60 +1,45 @@
 import classes from './Counter.module.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { useState, useCallback } from 'react';
 
-export function CounterStateful({
-  count: initialCount,
+export function CounterStateless({
+  count,
   min,
   max,
   step,
+  onIncrement,
+  onDecrement,
   buttonLabels,
   className,
 }) {
-  const [count, setCount] = useState(initialCount);
-
   const combineClassNames = classNames(classes.Counter, className);
-
-  const handleIncrement = useCallback(() => {
-    setCount((count) => count + step);
-  }, [step]);
-
-  const handleDecrement = useCallback(() => {
-    setCount((count) => count - step);
-  }, [step]);
 
   return (
     <div className={combineClassNames}>
-      <CountButton label={buttonLabels.increment} onUpdate={handleIncrement}>
+      <button
+        type="button"
+        onClick={onIncrement}
+        aria-label={buttonLabels.increment}
+      >
         +
-      </CountButton>
+      </button>
 
-      <CountOutput>{count}</CountOutput>
+      <output>{count}</output>
 
-      <CountButton label={buttonLabels.decrement} onUpdate={handleDecrement}>
+      <button
+        type="button"
+        onClick={onDecrement}
+        aria-label={buttonLabels.decrement}
+      >
         -
-      </CountButton>
+      </button>
     </div>
-  );
-}
-
-// eslint-disable-next-line react/prop-types
-function CountOutput({ children }) {
-  return <output>{children}</output>;
-}
-
-// eslint-disable-next-line react/prop-types
-function CountButton({ label, onUpdate, children }) {
-  return (
-    <button type="button" onClick={onUpdate} aria-label={label}>
-      {children}
-    </button>
   );
 }
 
 /* Props ------------------------------------------------------------------- */
 
-CounterStateful.defaultProps = {
+CounterStateless.defaultProps = {
   count: 1,
   min: 1,
   max: 10,
@@ -64,9 +49,11 @@ CounterStateful.defaultProps = {
     decrement: '카운트 감소',
   },
   className: '',
+  onIncrement: null,
+  onDecrement: null,
 };
 
-CounterStateful.propTypes = {
+CounterStateless.propTypes = {
   /** 카운트 현재 값입니다. */
   count: PropTypes.number,
   /** 카운트 최솟값입니다. */
@@ -82,4 +69,8 @@ CounterStateful.propTypes = {
   }),
   /** 사용자 정의 클래스 이름입니다. */
   className: PropTypes.string,
+  /** 카운트 증가 함수를 설정합니다. */
+  onIncrement: PropTypes.func,
+  /** 카운트 감소 함수를 설정합니다. */
+  onDecrement: PropTypes.func,
 };
