@@ -24,8 +24,8 @@ export default function SignUp() {
 
   useDocumentTitle('회원가입 → Likelion 4th');
 
-  const { x, y } = useMouse();
-  console.log(x, y);
+  // const { x, y } = useMouse();
+  // console.log(x, y);
 
   const formStateRef = useRef(initialFormState);
 
