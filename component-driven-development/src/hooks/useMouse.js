@@ -1,3 +1,6 @@
+// import { debounce } from '@/utils';
+//* lodash library 사용
+import debounce from 'lodash.debounce';
 import { useState, useEffect } from 'react';
 
 /**
@@ -5,17 +8,16 @@ import { useState, useEffect } from 'react';
  * @returns {{ x: number, y: number }} 마우스 x, y 위치
  */
 
-export function useMouse() {
+export function useMouse(recordTime = 300) {
   const [x, updateX] = useState(0);
   const [y, updateY] = useState(0);
 
   useEffect(() => {
     const EVENT_TYPE = 'mousemove';
-
-    const handleMouseMove = (e) => {
+    const handleMouseMove = debounce((e) => {
       updateX(e.pageX);
       updateY(e.pageY);
-    };
+    }, recordTime);
 
     // 이벤트 구독
     globalThis.addEventListener(EVENT_TYPE, handleMouseMove);
