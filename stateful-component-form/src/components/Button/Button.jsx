@@ -1,4 +1,4 @@
-import { bool } from 'prop-types';
+import propTypes from 'prop-types';
 import { getColor } from '@/theme/utils';
 import classes from './Button.module.scss';
 
@@ -29,6 +29,8 @@ Button.defaultProps = {
 };
 
 Button.propTypes = {
-  secondary: bool,
-  disabled: bool,
+  /** 버튼 모양을 두번째(secondary)로 설정합니다. */
+  secondary: propTypes.bool,
+  /** 버튼 비활성화(disabled) 합니다. */
+  disabled: propTypes.bool,
 };

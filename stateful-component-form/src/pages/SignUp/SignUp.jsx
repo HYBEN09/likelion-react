@@ -1,10 +1,9 @@
 import { useRef /* useState */ } from 'react';
 import { BaseLayout, FormInput, Button } from '@/components';
 import classes from './SignUp.module.scss';
+import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 // import { EventSubUnsub } from '@/demo/EventSubUnsub';
-import { validator } from '@/utils';
-
-console.log(validator.isId('ab35', { min: 3, max: 11 }));
+// import { validator } from '@/utils';
 
 const initialFormState = {
   name: '',
@@ -21,6 +20,8 @@ const initialFormState = {
 export default function SignUp() {
   // const [isVisible, setIsVisible] = useState(true);
   // const [message, setMessage] = useState('before update');
+
+  useDocumentTitle('회원가입 → Likelion 4th');
 
   const formStateRef = useRef(initialFormState);
 
