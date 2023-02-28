@@ -1,7 +1,7 @@
-import { useRef } from 'react';
+import { useCallback, useRef, useState } from 'react';
 import { BaseLayout, FormInput, Button, Notification } from '@/components';
-import classes from './SignUp.module.scss';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
+import classes from './SignUp.module.scss';
 import { createAuthUser } from '@/firebase/auth';
 
 const initialFormState = {
@@ -16,11 +16,20 @@ const initialFormState = {
 export default function SignUp() {
   useDocumentTitle('회원가입 → Likelion 4th');
 
+  const [isVisibleNoti, setIsVisibleNoti] = useState(false);
+
+  const handleVisibleNoti = useCallback(() => {
+    setIsVisibleNoti(true);
+  }, []);
+
+  const handleInVisibleNoti = useCallback(() => {
+    setIsVisibleNoti(false);
+  }, []);
+
   const formStateRef = useRef(initialFormState);
 
   const handleReset = (e) => {
     e.preventDefault();
-
     console.log('reset');
   };
 
@@ -52,17 +61,12 @@ export default function SignUp() {
   return (
     <BaseLayout className={classes.SignUp}>
       <h2>회원가입 페이지</h2>
+
       <form
         className={classes.form}
         onSubmit={handleSubmit}
         onReset={handleReset}
-        style={{
-          position: 'relative',
-          overflow: 'hidden',
-        }}
       >
-        <Notification />
-
         <FormInput name="name" label="이름" onChange={handleChangeInput} />
 
         <FormInput
@@ -93,6 +97,14 @@ export default function SignUp() {
           </Button>
         </div>
       </form>
+
+      <Notification show={isVisibleNoti} onClose={handleVisibleNoti}>
+        이미 가입된 이메일입니다.
+      </Notification>
+
+      <button type="button" onClick={handleInVisibleNoti}>
+        노티피케이션 열기
+      </button>
     </BaseLayout>
   );
 }
