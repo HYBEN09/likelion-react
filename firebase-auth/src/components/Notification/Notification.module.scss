@@ -1,0 +1,11 @@
+.Notification {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border: 2px solid currentColor;
+  border-radius: 6px;
+  background: #fff;
+  position: 'absolute';
+  z-index: 1000000000000000000;
+}
