@@ -1,8 +1,9 @@
-import { useCallback, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { BaseLayout, FormInput, Button, Notification } from '@/components';
 import { useDocumentTitle } from '@/hooks/useDocumentTitle';
 import classes from './SignUp.module.scss';
 import { createAuthUser } from '@/firebase/auth';
+import { useToggle } from '@/hooks/useToggle';
 
 const initialFormState = {
   name: '',
@@ -11,20 +12,21 @@ const initialFormState = {
   passwordConfirm: '',
 };
 
+// useState    - 상태 관리 (상태 업데이트 → 리-렌더링(UI 업데이트))
+// useLayoutEffect - 사이드 이펙트 (페인트 이전)
+// useEffect   - 사이드 이펙트 (DOM 요소 접근/조작, 네트워크 요청/응답, 이벤트 구독/취소, 오류 처리 : 페인트 이후)
+// useRef      - 1. DOM 요소 참조 / 2. 이전의 값을 기억 (컴포넌트 렌더링 영향 X)
+// useCallback - 함수(기능) 타입 prop 참조 동일성 유지(기억, 성능 최적화)
+// useMemo     - JavaScript 모든 값을 기억(성능 최적화)
+// useId       - 고유한 식별자(ID) 생성
+
 /* Component ---------------------------------------------------------------- */
 
 export default function SignUp() {
   useDocumentTitle('회원가입 → Likelion 4th');
 
-  const [isVisibleNoti, setIsVisibleNoti] = useState(false);
-
-  const handleVisibleNoti = useCallback(() => {
-    setIsVisibleNoti(true);
-  }, []);
-
-  const handleInVisibleNoti = useCallback(() => {
-    setIsVisibleNoti(false);
-  }, []);
+  // util(useToggle)
+  const { toggle, onToggle, offToggle } = useToggle();
 
   const formStateRef = useRef(initialFormState);
 
@@ -98,11 +100,11 @@ export default function SignUp() {
         </div>
       </form>
 
-      <Notification show={isVisibleNoti} onClose={handleVisibleNoti}>
+      <Notification show={toggle} onClose={offToggle}>
         이미 가입된 이메일입니다.
       </Notification>
 
-      <button type="button" onClick={handleInVisibleNoti}>
+      <button type="button" onClick={onToggle}>
         노티피케이션 열기
       </button>
     </BaseLayout>
