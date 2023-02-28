@@ -2,6 +2,7 @@ import classes from './Notification.module.scss';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { createPortal } from 'react-dom';
+import { useEffect, useRef } from 'react';
 
 const notificationContainer = document.getElementById('notificationContainer');
 
@@ -14,6 +15,28 @@ export function Notification({
   children,
   ...restProps
 }) {
+  //esc 누르면 notification이 닫혀지게 함
+  const closeButtonRef = useRef(null);
+
+  useEffect(() => {
+    const { current: closeButton } = closeButtonRef;
+
+    if (closeButton) {
+      const handleKeyUp = (e) => {
+        console.log(e.key);
+        if (e.key.toLowerCase() === 'escape') {
+          onClose();
+        }
+      };
+
+      // 버튼 요소에 이벤트를 연결하면
+      // 초점이 버튼 요소에 적용되었을때 그때 이벤트가 발동
+      globalThis.addEventListener('keyup', handleKeyUp);
+      //cleanup
+      return () => globalThis.removeEventListener('keyup', handleKeyUp);
+    }
+  }, [onClose, show]);
+
   return show
     ? createPortal(
         <div
@@ -22,6 +45,7 @@ export function Notification({
         >
           {children}
           <button
+            ref={closeButtonRef}
             type="button"
             className={classes.closeButton}
             onClick={onClose}
