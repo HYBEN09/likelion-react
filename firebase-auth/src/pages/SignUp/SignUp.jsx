@@ -25,8 +25,7 @@ const initialFormState = {
 export default function SignUp() {
   useDocumentTitle('회원가입 → Likelion 4th');
 
-  // util(useToggle)
-  const { toggle, onToggle, offToggle } = useToggle();
+  /* -------------------------------------------------------------------------- */
 
   const formStateRef = useRef(initialFormState);
 
@@ -51,8 +50,7 @@ export default function SignUp() {
       return;
     }
 
-    const { user } = await createAuthUser(email, password);
-    console.log(user);
+    console.log({ name, email, password, passwordConfirm });
   };
 
   const handleChangeInput = (e) => {
@@ -99,14 +97,6 @@ export default function SignUp() {
           </Button>
         </div>
       </form>
-
-      <Notification show={toggle} onClose={offToggle}>
-        이미 가입된 이메일입니다.
-      </Notification>
-
-      <button type="button" onClick={onToggle}>
-        노티피케이션 열기
-      </button>
     </BaseLayout>
   );
 }
