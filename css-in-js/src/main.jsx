@@ -16,11 +16,14 @@ import { createRoot } from 'react-dom/client';
 import { AuthUserProvider } from './contexts/AuthUser';
 import { GlobalStateProvider } from '@/contexts/GlobalState';
 import App from '@/app/App';
+import { BrowserRouter } from 'react-router-dom';
 
 createRoot(document.getElementById('root')).render(
-  <AuthUserProvider>
-    <GlobalStateProvider>
-      <App />
-    </GlobalStateProvider>
-  </AuthUserProvider>
+  <BrowserRouter>
+    <AuthUserProvider>
+      <GlobalStateProvider>
+        <App />
+      </GlobalStateProvider>
+    </AuthUserProvider>
+  </BrowserRouter>
 );
